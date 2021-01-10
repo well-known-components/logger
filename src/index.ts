@@ -29,8 +29,20 @@ export function createLogComponent(): ILoggerComponent {
           print("DEBUG", loggerName, message, extra)
         },
         error(error: string | Error, extra?: Record<string, string | number>) {
-          print("ERROR", loggerName, error.toString(), extra || error)
-          console.error(error)
+          let message = `${error}`
+          let printTrace = true
+
+          if (error instanceof Error && "stack" in error && typeof error.stack == "string") {
+            if (error.stack!.includes(error.message)) {
+              message = error.stack
+              printTrace = false
+            }
+          }
+
+          print("ERROR", loggerName, message, extra || error)
+          if (printTrace) {
+            console.trace()
+          }
         },
       }
     },
