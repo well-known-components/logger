@@ -29,7 +29,8 @@ export function createLogComponent(): ILoggerComponent {
           print("DEBUG", loggerName, message, extra)
         },
         error(error: string | Error, extra?: Record<string, string | number>) {
-          print("DEBUG", loggerName, error.toString(), extra || error)
+          print("ERROR", loggerName, error.toString(), extra || error)
+          console.error(error)
         },
       }
     },
