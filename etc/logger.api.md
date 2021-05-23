@@ -7,6 +7,12 @@
 import { ILoggerComponent } from '@well-known-components/interfaces';
 
 // @public
+export function createConsoleLogComponent(): ILoggerComponent;
+
+// @public
+export function createJsonLogComponent(): ILoggerComponent;
+
+// @public
 export function createLogComponent(): ILoggerComponent;
 
 
