@@ -1,5 +1,7 @@
 on:
   push:
+    branches:
+      - main
   pull_request:
   release:
     types:
@@ -16,9 +18,9 @@ jobs:
         with:
           node-version: 14.x
       - name: install
-        run:  npm install
+        run: npm install
       - name: make
-        run:  make build
+        run: make build
       - name: Publish
         uses: menduz/oddish-action@master
         with:
