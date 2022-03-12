@@ -1,1 +1,1 @@
-# base-component
+# logger component
