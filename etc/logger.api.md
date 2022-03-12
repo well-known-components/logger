@@ -5,15 +5,21 @@
 ```ts
 
 import { ILoggerComponent } from '@well-known-components/interfaces';
+import { IMetricsComponent } from '@well-known-components/interfaces';
+
+// Warning: (ae-forgotten-export) The symbol "LoggerComponents" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function createConsoleLogComponent(components: LoggerComponents): ILoggerComponent;
 
 // @public
-export function createConsoleLogComponent(): ILoggerComponent;
+export function createJsonLogComponent(components: LoggerComponents): ILoggerComponent;
 
 // @public
-export function createJsonLogComponent(): ILoggerComponent;
+export function createLogComponent(components: LoggerComponents): ILoggerComponent;
 
 // @public
-export function createLogComponent(): ILoggerComponent;
+export const metricDeclarations: IMetricsComponent.MetricsRecordDefinition<"wkc_logger_logs_total">;
 
 
 // (No @packageDocumentation comment for this package)

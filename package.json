@@ -1,6 +1,6 @@
 {
   "name": "@well-known-components/logger",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "base component",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -25,7 +25,6 @@
     "@well-known-components/interfaces": "next",
     "typescript": "latest"
   },
-  "dependencies": {},
   "peerDependencies": {
     "@well-known-components/interfaces": "^1.0.0"
   },

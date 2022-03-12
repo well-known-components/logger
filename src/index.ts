@@ -1,18 +1,21 @@
 import { ILoggerComponent } from "@well-known-components/interfaces"
 import { printCloudwatch } from "./cloudwatch-printer"
 import { printConsole } from "./console-printer"
-import { createGenericLogComponent } from "./helpers"
+import { createGenericLogComponent, LoggerComponents } from "./helpers"
+import { metricDeclarations } from "./metrics"
+
+export { metricDeclarations }
 
 /**
  * Creates a scoped logger component that selects a readable output for tests
  * and json logger for NODE_ENV=production
  * @public
  */
-export function createLogComponent(): ILoggerComponent {
+export function createLogComponent(components: LoggerComponents): ILoggerComponent {
   if (process.env.NODE_ENV == "production") {
-    return createJsonLogComponent()
+    return createJsonLogComponent(components)
   } else {
-    return createConsoleLogComponent()
+    return createConsoleLogComponent(components)
   }
 }
 
@@ -20,8 +23,8 @@ export function createLogComponent(): ILoggerComponent {
  * Creates a scoped logger component to print a readable output to the stderr
  * @public
  */
-export function createConsoleLogComponent(): ILoggerComponent {
-  return createGenericLogComponent(printConsole)
+export function createConsoleLogComponent(components: LoggerComponents): ILoggerComponent {
+  return createGenericLogComponent(components, printConsole)
 }
 
 /**
@@ -29,6 +32,6 @@ export function createConsoleLogComponent(): ILoggerComponent {
  * Useful for cloudwatch and other logging services.
  * @public
  */
-export function createJsonLogComponent(): ILoggerComponent {
-  return createGenericLogComponent(printCloudwatch)
+export function createJsonLogComponent(components: LoggerComponents): ILoggerComponent {
+  return createGenericLogComponent(components, printCloudwatch)
 }
