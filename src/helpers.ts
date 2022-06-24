@@ -37,16 +37,15 @@ export type LogLevel = "ALL" | "LOG" | "DEBUG" | "INFO" | "WARN" | "ERROR" | "OF
  * @public
  */
 export function createGenericLogComponent(components: LoggerComponents, print: LogLineFunction): ILoggerComponent {
+  const levelsEnum = { ALL: 0, LOG: 1, DEBUG: 2, INFO: 4, WARN: 8, ERROR: 16, OFF: 1 | 2 | 4 | 8 | 16 }
+
   const minLogLevel = (components.config?.logLevel.toUpperCase() || "ALL") as LogLevel
+  const numericMinLevel = levelsEnum[minLogLevel]
 
-  const shouldPrint = (functionLogLevel: LogLevel) => {
-    const orderedLevels = ["ALL", "LOG", "DEBUG", "INFO", "WARN", "ERROR", "OFF"]
-
-    const minLogLevelIndex = orderedLevels.findIndex((level) => level === minLogLevel)
-    const functionLogLevelIndex = orderedLevels.findIndex((level) => level === functionLogLevel)
-
-    // Print every log greater than or equal to a certain level
-    return functionLogLevelIndex >= minLogLevelIndex
+  // Print every log greater than or equal to a certain level
+  const shouldPrint = (logLevel: LogLevel) => {
+    const numericLevel = levelsEnum[logLevel]
+    return numericLevel >= numericMinLevel
   }
 
   return {
