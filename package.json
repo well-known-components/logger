@@ -21,8 +21,11 @@
   },
   "homepage": "https://github.com/well-known-components/logger#readme",
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.12.1",
+    "@microsoft/api-extractor": "^7.17.0",
+    "@types/jest": "^28.1.0",
     "@well-known-components/interfaces": "next",
+    "jest": "^28.1.0",
+    "ts-jest": "^28.0.4",
     "typescript": "latest"
   },
   "peerDependencies": {
