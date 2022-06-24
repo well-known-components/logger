@@ -2,6 +2,19 @@ import { createGenericLogComponent } from "../src/helpers"
 
 describe("Helpers", () => {
   describe("Log Level", () => {
+    it("should log all messages when no config log level is provided", () => {
+      const print = jest.fn()
+      const loggerComponent = createGenericLogComponent({}, print)
+      const logger = loggerComponent.getLogger("test")
+
+      logger.log("log")
+      logger.debug("debug")
+      logger.info("info")
+      logger.warn("warn")
+      logger.error("error")
+      expect(print).toHaveBeenCalledTimes(5)
+    })
+
     it("should log all messages when the log level is ALL", () => {
       const config = { logLevel: "ALL" }
       const print = jest.fn()
