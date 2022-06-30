@@ -11,7 +11,7 @@ export { metricDeclarations }
  * and json logger for NODE_ENV=production
  * @public
  */
-export function createLogComponent(components: LoggerComponents): ILoggerComponent {
+export function createLogComponent(components: LoggerComponents = {}): ILoggerComponent {
   if (process.env.NODE_ENV == "production") {
     return createJsonLogComponent(components)
   } else {

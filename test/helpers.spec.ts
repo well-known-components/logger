@@ -1,7 +1,22 @@
 import { createGenericLogComponent } from "../src/helpers"
+import { createLogComponent } from "../src"
+import * as consolePrinter from "../src/console-printer"
 
 describe("Helpers", () => {
   describe("Log Level", () => {
+    it("should log all messages when no components are provided", () => {
+      const printConsoleSpy = jest.spyOn(consolePrinter, "printConsole")
+      const loggerComponent = createLogComponent()
+      const logger = loggerComponent.getLogger("test")
+
+      logger.log("log")
+      logger.debug("debug")
+      logger.info("info")
+      logger.warn("warn")
+      logger.error("error")
+      expect(printConsoleSpy).toHaveBeenCalledTimes(5)
+    })
+
     it("should log all messages when no config log level is provided", () => {
       const print = jest.fn()
       const loggerComponent = createGenericLogComponent({}, print)

@@ -16,11 +16,10 @@ export function createConsoleLogComponent(components: LoggerComponents): ILogger
 export function createJsonLogComponent(components: LoggerComponents): ILoggerComponent;
 
 // @public
-export function createLogComponent(components: LoggerComponents): ILoggerComponent;
+export function createLogComponent(components?: LoggerComponents): ILoggerComponent;
 
 // @public
 export const metricDeclarations: IMetricsComponent.MetricsRecordDefinition<"wkc_logger_logs_total">;
-
 
 // (No @packageDocumentation comment for this package)
 

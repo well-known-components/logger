@@ -2,6 +2,14 @@
 
 Simple stdout & stderr logger component. Prints JSON when `NODE_ENV=production`
 
+## Use
+
+```typescript
+const loggerComponent = createLogComponent()
+const logger = getLogger("Test")
+logger.info("log some info")
+```
+
 ## Config
 
 ### logLevel
