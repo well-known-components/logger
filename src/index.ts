@@ -11,7 +11,7 @@ export { metricDeclarations }
  * and json logger for NODE_ENV=production
  * @public
  */
-export function createLogComponent(components: LoggerComponents): ILoggerComponent {
+export async function createLogComponent(components: LoggerComponents): Promise<ILoggerComponent> {
   return createConsoleLogComponent(components)
 }
 
@@ -19,7 +19,7 @@ export function createLogComponent(components: LoggerComponents): ILoggerCompone
  * Creates a scoped logger component to print a readable output to the stderr
  * @public
  */
-export function createConsoleLogComponent(components: LoggerComponents): ILoggerComponent {
+export async function createConsoleLogComponent(components: LoggerComponents): Promise<ILoggerComponent> {
   return createGenericLogComponent(components, printConsole)
 }
 
@@ -28,6 +28,6 @@ export function createConsoleLogComponent(components: LoggerComponents): ILogger
  * Useful for cloudwatch and other logging services.
  * @public
  */
-export function createJsonLogComponent(components: LoggerComponents): ILoggerComponent {
+export async function createJsonLogComponent(components: LoggerComponents): Promise<ILoggerComponent> {
   return createGenericLogComponent(components, printCloudwatch)
 }

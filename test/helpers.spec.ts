@@ -1,10 +1,11 @@
 import { createGenericLogComponent } from "../src/helpers"
+import { createConfigComponent } from "@well-known-components/env-config-provider"
 
-describe("Helpers", () => {
-  describe("Log Level", () => {
-    it("should log all messages when no config log level is provided", () => {
+describe("Helpers",  () => {
+  describe("Log Level",  () => {
+    it("should log all messages when no config log level is provided", async () => {
       const print = jest.fn()
-      const loggerComponent = createGenericLogComponent({}, print)
+      const loggerComponent = await createGenericLogComponent({}, print)
       const logger = loggerComponent.getLogger("test")
 
       logger.log("log")
@@ -15,10 +16,10 @@ describe("Helpers", () => {
       expect(print).toHaveBeenCalledTimes(5)
     })
 
-    it("should log all messages when the log level is ALL", () => {
-      const config = { logLevel: "ALL" }
+    it("should log all messages when the log level is ALL", async () => {
+      const config = createConfigComponent({ LOG_LEVEL: "ALL" })
       const print = jest.fn()
-      const loggerComponent = createGenericLogComponent({ config }, print)
+      const loggerComponent = await createGenericLogComponent({ config }, print)
       const logger = loggerComponent.getLogger("test")
 
       logger.log("log")
@@ -29,10 +30,10 @@ describe("Helpers", () => {
       expect(print).toHaveBeenCalledTimes(5)
     })
 
-    it("should log all messages with a log level greater than LOG", () => {
-      const config = { logLevel: "LOG" }
+    it("should log all messages with a log level greater than LOG", async () => {
+      const config = createConfigComponent({ LOG_LEVEL: "LOG" })
       const print = jest.fn()
-      const loggerComponent = createGenericLogComponent({ config }, print)
+      const loggerComponent = await createGenericLogComponent({ config }, print)
       const logger = loggerComponent.getLogger("test")
 
       logger.log("log")
@@ -43,10 +44,10 @@ describe("Helpers", () => {
       expect(print).toHaveBeenCalledTimes(5)
     })
 
-    it("should log all messages with a log level greater than DEBUG", () => {
-      const config = { logLevel: "DEBUG" }
+    it("should log all messages with a log level greater than DEBUG", async () => {
+      const config = createConfigComponent({ LOG_LEVEL: "DEBUG" })
       const print = jest.fn()
-      const loggerComponent = createGenericLogComponent({ config }, print)
+      const loggerComponent = await createGenericLogComponent({ config }, print)
       const logger = loggerComponent.getLogger("test")
 
       logger.log("log")
@@ -59,10 +60,10 @@ describe("Helpers", () => {
       expect(print).toHaveBeenCalledTimes(4)
     })
 
-    it("should log all messages with a log level greater than INFO", () => {
-      const config = { logLevel: "INFO" }
+    it("should log all messages with a log level greater than INFO", async () => {
+      const config = createConfigComponent({ LOG_LEVEL: "INFO" })
       const print = jest.fn()
-      const loggerComponent = createGenericLogComponent({ config }, print)
+      const loggerComponent = await createGenericLogComponent({ config }, print)
       const logger = loggerComponent.getLogger("test")
 
       logger.log("log")
@@ -75,10 +76,10 @@ describe("Helpers", () => {
       expect(print).toHaveBeenCalledTimes(3)
     })
 
-    it("should log all messages with a log level greater than WARN", () => {
-      const config = { logLevel: "WARN" }
+    it("should log all messages with a log level greater than WARN", async () => {
+      const config = createConfigComponent({ LOG_LEVEL: "WARN" })
       const print = jest.fn()
-      const loggerComponent = createGenericLogComponent({ config }, print)
+      const loggerComponent = await createGenericLogComponent({ config }, print)
       const logger = loggerComponent.getLogger("test")
 
       logger.log("log")
@@ -91,10 +92,10 @@ describe("Helpers", () => {
       expect(print).toHaveBeenCalledTimes(2)
     })
 
-    it("should log all messages with a log level greater than ERROR", () => {
-      const config = { logLevel: "ERROR" }
+    it("should log all messages with a log level greater than ERROR", async () => {
+      const config = createConfigComponent({ LOG_LEVEL: "ERROR" })
       const print = jest.fn()
-      const loggerComponent = createGenericLogComponent({ config }, print)
+      const loggerComponent = await createGenericLogComponent({ config }, print)
       const logger = loggerComponent.getLogger("test")
 
       logger.log("log")
@@ -107,10 +108,10 @@ describe("Helpers", () => {
       expect(print).toHaveBeenCalledTimes(1)
     })
 
-    it("should not log any message when the log level is OFF", () => {
-      const config = { logLevel: "OFF" }
+    it("should not log any message when the log level is OFF", async () => {
+      const config = createConfigComponent({ LOG_LEVEL: "OFF" })
       const print = jest.fn()
-      const loggerComponent = createGenericLogComponent({ config }, print)
+      const loggerComponent = await createGenericLogComponent({ config }, print)
       const logger = loggerComponent.getLogger("test")
 
       logger.log("log")
