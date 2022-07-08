@@ -1,6 +1,6 @@
 {
   "name": "@well-known-components/logger",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "base component",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -23,7 +23,7 @@
   "devDependencies": {
     "@microsoft/api-extractor": "^7.17.0",
     "@types/jest": "^28.1.0",
-    "@well-known-components/interfaces": "next",
+    "@well-known-components/interfaces": "^1.1.1",
     "jest": "^28.1.0",
     "ts-jest": "^28.0.4",
     "typescript": "latest"

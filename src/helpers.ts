@@ -1,4 +1,4 @@
-import { ILoggerComponent, IMetricsComponent } from "@well-known-components/interfaces"
+import { ILoggerComponent, IMetricsComponent, IConfigComponent } from "@well-known-components/interfaces"
 import { metricDeclarations } from "./metrics"
 
 /**
@@ -6,7 +6,7 @@ import { metricDeclarations } from "./metrics"
  */
 export type LoggerComponents = {
   metrics?: IMetricsComponent<keyof typeof metricDeclarations>
-  config?: ILoggerConfigComponent
+  config?: IConfigComponent
 }
 
 /**
@@ -39,8 +39,8 @@ export type LogLevel = "ALL" | "LOG" | "DEBUG" | "INFO" | "WARN" | "ERROR" | "OF
 export function createGenericLogComponent(components: LoggerComponents, print: LogLineFunction): ILoggerComponent {
   const levelsEnum = { ALL: 0, LOG: 1, DEBUG: 2, INFO: 4, WARN: 8, ERROR: 16, OFF: 1 | 2 | 4 | 8 | 16 }
 
-  const minLogLevel = (components.config?.logLevel.toUpperCase() || "ALL") as LogLevel
-  const numericMinLevel = levelsEnum[minLogLevel]
+  const minLogLevel = (components.config?.getString("LOG_LEVEL") || "ALL") as LogLevel
+  const numericMinLevel = levelsEnum[minLogLevel] || 0
 
   // Print every log greater than or equal to a certain level
   const shouldPrint = (logLevel: LogLevel) => {

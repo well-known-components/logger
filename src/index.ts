@@ -12,11 +12,7 @@ export { metricDeclarations }
  * @public
  */
 export function createLogComponent(components: LoggerComponents): ILoggerComponent {
-  if (process.env.NODE_ENV == "production") {
-    return createJsonLogComponent(components)
-  } else {
-    return createConsoleLogComponent(components)
-  }
+  return createConsoleLogComponent(components)
 }
 
 /**
