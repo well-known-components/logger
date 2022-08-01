@@ -4,16 +4,18 @@ Simple stdout & stderr logger component. Prints JSON when `NODE_ENV=production`
 
 ## Config
 
-### logLevel
+### `LOG_LEVEL` configuration
 
-Adjust the default level to be used for logging. It will log everything after the assigned level according to the following hierarchy:
+Using the LOG_LEVEL value provided by the IConfigComponent, the following scale is used to filter out the log levels based on the following scale:
 
 "ALL" > "LOG" > "DEBUG" > "INFO" > "WARN" > "ERROR" > "OFF"
 
 Eg:
 
 ```typescript
-const config = { logLevel: "INFO" } // Set the log level
+const config: IConfigComponent =
+  createConfigComponent({ ...process.env, LOG_LEVEL: "INFO" })
+
 const loggerComponent = createLogComponent({ config })
 const logger = getLogger("Test")
 
