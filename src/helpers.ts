@@ -1,4 +1,5 @@
 import { ILoggerComponent, IMetricsComponent, IConfigComponent } from "@well-known-components/interfaces"
+import { ITracerComponent } from "@well-known-components/tracer-component"
 import { metricDeclarations } from "./metrics"
 
 /**
@@ -7,6 +8,7 @@ import { metricDeclarations } from "./metrics"
 export type LoggerComponents = {
   metrics?: IMetricsComponent<keyof typeof metricDeclarations>
   config?: IConfigComponent
+  tracer?: ITracerComponent
 }
 
 /**
