@@ -1,5 +1,9 @@
-import { ILoggerComponent, IMetricsComponent, IConfigComponent } from "@well-known-components/interfaces"
-import { ITracerComponent } from "@well-known-components/tracer-component"
+import {
+  ILoggerComponent,
+  IMetricsComponent,
+  IConfigComponent,
+  ITracerComponent,
+} from "@well-known-components/interfaces"
 import { metricDeclarations } from "./metrics"
 
 /**
