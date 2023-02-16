@@ -15,9 +15,8 @@ export const printConsole: LogLineFunction = (
   // logs should go to the stderr to be properly forwarded in some environments
   const extraLine = extra ? "\t" + JSON.stringify(extra) : ""
   const trace = components.tracer?.isInsideOfTraceSpan() ? components.tracer?.getTraceString() : undefined
+  const traceString = trace ? `[${trace}] ` : ""
   return process.stderr.write(
-    trace
-      ? `[${trace}] `
-      : "" + new Date().toISOString() + " [" + kind + "] (" + loggerName + "): " + message + extraLine + "\n"
+    traceString + new Date().toISOString() + " [" + kind + "] (" + loggerName + "): " + message + extraLine + "\n"
   )
 }
