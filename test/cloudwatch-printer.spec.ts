@@ -1,4 +1,4 @@
-import type { ITracerComponent } from "@well-known-components/tracer-component"
+import type { ITracerComponent } from "@well-known-components/interfaces"
 import { printCloudwatch } from "../src/cloudwatch-printer"
 
 let tracerComponentMock: ITracerComponent

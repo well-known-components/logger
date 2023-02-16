@@ -7,7 +7,7 @@
 import { IConfigComponent } from '@well-known-components/interfaces';
 import { ILoggerComponent } from '@well-known-components/interfaces';
 import { IMetricsComponent } from '@well-known-components/interfaces';
-import { ITracerComponent } from '@well-known-components/tracer-component';
+import { ITracerComponent } from '@well-known-components/interfaces';
 
 // Warning: (ae-forgotten-export) The symbol "LoggerComponents" needs to be exported by the entry point index.d.ts
 //
