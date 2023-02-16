@@ -26,11 +26,17 @@ describe("when printing a console log", () => {
       beforeEach(() => {
         isInsideOfTraceSpanMock.mockReturnValue(true)
         getTraceStringMock.mockReturnValue("aTraceString")
+        printConsole({ tracer: tracerComponentMock }, "INFO", "test", "a test message")
       })
 
       it("should print the trace", () => {
-        printConsole({ tracer: tracerComponentMock }, "INFO", "test", "a test message")
         expect(writeSpy).toHaveBeenCalledWith(expect.stringContaining("[aTraceString]"))
+      })
+
+      it("should print other information of the logger", () => {
+        expect(writeSpy).toHaveBeenCalledWith(expect.stringContaining("[INFO]"))
+        expect(writeSpy).toHaveBeenCalledWith(expect.stringContaining("(test)"))
+        expect(writeSpy).toHaveBeenCalledWith(expect.stringContaining("a test message"))
       })
     })
 
