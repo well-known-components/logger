@@ -10,15 +10,19 @@ import { IMetricsComponent } from '@well-known-components/interfaces';
 import { ITracerComponent } from '@well-known-components/interfaces';
 
 // Warning: (ae-forgotten-export) The symbol "LoggerComponents" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "EnricherFunction" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function createConsoleLogComponent(components: LoggerComponents): Promise<ILoggerComponent>;
+export function createConsoleLogComponent(components: LoggerComponents, enricher?: EnricherFunction): Promise<ILoggerComponent>;
 
 // @public
-export function createJsonLogComponent(components: LoggerComponents): Promise<ILoggerComponent>;
+export function createJsonLogComponent(components: LoggerComponents, enricher?: EnricherFunction): Promise<ILoggerComponent>;
 
 // @public
-export function createLogComponent(components: LoggerComponents): Promise<ILoggerComponent>;
+export function createLogComponent(components: LoggerComponents, enricher?: EnricherFunction): Promise<ILoggerComponent>;
+
+// @public
+export function createLogfmtLogComponent(components: LoggerComponents, enricher?: EnricherFunction): Promise<ILoggerComponent>;
 
 // @public
 export const metricDeclarations: IMetricsComponent.MetricsRecordDefinition<"wkc_logger_logs_total">;
