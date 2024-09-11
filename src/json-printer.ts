@@ -1,9 +1,9 @@
-import { incrementMetric, LoggerComponents, LogLineFunction } from "./helpers"
+import { incrementMetric, LoggerComponents, LogLineFunction } from './helpers'
 
 /**
  * @internal
  */
-export const printCloudwatch: LogLineFunction = (
+export const printJson: LogLineFunction = (
   components: LoggerComponents,
   kind: string,
   loggerName: string,
@@ -14,15 +14,15 @@ export const printCloudwatch: LogLineFunction = (
 
   const logline = {
     timestamp: new Date().toISOString(),
-    kind,
-    system: loggerName,
+    level: kind,
+    logger: loggerName,
     message,
-    extra,
-    traceId: trace?.traceId,
-    parentId: trace?.parentId,
+    traceId: trace?.traceId || undefined,
+    parentId: trace?.parentId || undefined,
+    ...extra
   }
 
   incrementMetric(components, loggerName, kind)
 
-  return process.stderr.write(JSON.stringify(logline) + "\n")
+  return process.stderr.write(JSON.stringify(logline) + '\n')
 }

@@ -1,8 +1,9 @@
-import { ILoggerComponent } from "@well-known-components/interfaces"
-import { printCloudwatch } from "./cloudwatch-printer"
-import { printConsole } from "./console-printer"
-import { createGenericLogComponent, LoggerComponents } from "./helpers"
-import { metricDeclarations } from "./metrics"
+import { ILoggerComponent } from '@well-known-components/interfaces'
+import { printJson } from './json-printer'
+import { printConsole } from './console-printer'
+import { createGenericLogComponent, EnricherFunction, LoggerComponents } from './helpers'
+import { metricDeclarations } from './metrics'
+import { printLogfmt } from './logfmt-printer'
 
 export { metricDeclarations }
 
@@ -11,16 +12,23 @@ export { metricDeclarations }
  * and json logger for NODE_ENV=production
  * @public
  */
-export async function createLogComponent(components: LoggerComponents): Promise<ILoggerComponent> {
-  return createConsoleLogComponent(components)
+export async function createLogComponent(
+  components: LoggerComponents,
+  enricher?: EnricherFunction
+): Promise<ILoggerComponent> {
+  return createConsoleLogComponent(components, enricher)
 }
 
 /**
  * Creates a scoped logger component to print a readable output to the stderr
+ *
  * @public
  */
-export async function createConsoleLogComponent(components: LoggerComponents): Promise<ILoggerComponent> {
-  return createGenericLogComponent(components, printConsole)
+export async function createConsoleLogComponent(
+  components: LoggerComponents,
+  enricher?: EnricherFunction
+): Promise<ILoggerComponent> {
+  return createGenericLogComponent(components, printConsole, enricher)
 }
 
 /**
@@ -28,6 +36,21 @@ export async function createConsoleLogComponent(components: LoggerComponents): P
  * Useful for cloudwatch and other logging services.
  * @public
  */
-export async function createJsonLogComponent(components: LoggerComponents): Promise<ILoggerComponent> {
-  return createGenericLogComponent(components, printCloudwatch)
+export async function createJsonLogComponent(
+  components: LoggerComponents,
+  enricher?: EnricherFunction
+): Promise<ILoggerComponent> {
+  return createGenericLogComponent(components, printJson, enricher)
+}
+
+/**
+ * Creates a scoped logger component to print logfmt to the stderr.
+ * Useful for cloudwatch and other logging services.
+ * @public
+ */
+export async function createLogfmtLogComponent(
+  components: LoggerComponents,
+  enricher?: EnricherFunction
+): Promise<ILoggerComponent> {
+  return createGenericLogComponent(components, printLogfmt, enricher)
 }
